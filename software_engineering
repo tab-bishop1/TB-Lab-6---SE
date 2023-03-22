@@ -1,0 +1,68 @@
+# Tabitha Bishop
+
+def menu():
+    # defining menu function
+    print("Menu")
+    print("-------------")
+    print("1. Encode")
+    print("2. Decode")
+    print("3. Quit")
+
+
+def encoder(password):
+    res = ""
+    for num in password:
+        if int(num) < 9 and int(num) <= 6:
+            res += str(int(num) + 3)
+        elif int(num) == 9:
+            res += str(int(num) - 7)
+        elif int(num) == 8:
+            res += str(int(num) - 7)
+        elif int(num) == 7:
+            res += str(int(num) - 7)
+    return res
+    # should take in an 8-digit integer password
+    # after passing in the psw, the encoder stores the encoded password to a new variable
+    # in the new password, each digit should be shifted up by 3 numbers
+
+
+def decoder(new_password):
+    res = ""
+    for num in new_password:
+        if 3 <= int(num) <= 9:
+            res += str(int(num) - 3)
+        elif int(num) == 1:
+            res += str(int(num) + 7)
+        elif int(num) == 2:
+            res += str(int(num) + 7)
+        elif int(num) == 0:
+            res += str(int(num) + 7)
+    return res
+    # takes new encoded password and returns it back to original password
+
+
+def main():
+    menu()
+
+    while True:
+        option = int(input("Please enter an option: "))
+        if option == 1:  # encoding option
+            password = input("Please enter your password to encode: ")
+            # call function here
+            print("Your password has been encoded and stored!")
+        elif option == 2:  # decoding option
+            # call function here
+            encoded_password = encoder(password)
+            original_password = password
+            print(f"The encoded password is {encoded_password}, and the original password is {original_password}.")
+        elif option == 3:  # exiting program
+            break
+
+
+"""  # testing functions 
+    print(encoder("12345678"))
+    print(decoder("45678922"))
+"""
+
+if __name__ == "__main__":
+    main()
