@@ -26,19 +26,26 @@ def encoder(password):
     # in the new password, each digit should be shifted up by 3 numbers
 
 
-def decoder(new_password):
-    res = ""
-    for num in new_password:
-        if 3 <= int(num) <= 9:
-            res += str(int(num) - 3)
-        elif int(num) == 1:
-            res += str(int(num) + 7)
-        elif int(num) == 2:
-            res += str(int(num) + 7)
-        elif int(num) == 0:
-            res += str(int(num) + 7)
-    return res
-    # takes new encoded password and returns it back to original password
+# Asha Miller : decodes the previously encoded password
+def decoder(encoded_pw):
+    code = encoded_pw
+    decoded_pw = []
+    for item in code:   # iterates through each item in the password
+        num = int(item)
+        if num - 3 == (-3):  # accounts for numbers that were double digits
+            new_num = '7'
+            decoded_pw.append(new_num)
+        elif num - 3 == (-2):
+            new_num = '8'
+            decoded_pw.append(new_num)
+        elif num - 3 == (-1):
+            new_num = '9'
+            decoded_pw.append(new_num)      # adds each decoded number to the decoded_pw list
+        else:
+            new_num = num - 3
+            decoded_pw.append(new_num)
+    final = ''.join(str(num) for num in decoded_pw)     # makes all items into strings and joins them together
+    return final
 
 
 def main():
@@ -49,12 +56,12 @@ def main():
         if option == 1:  # encoding option
             password = input("Please enter your password to encode: ")
             # call function here
+            encoded_password = encoder(password)
             print("Your password has been encoded and stored!")
         elif option == 2:  # decoding option
-            # call function here
-            encoded_password = encoder(password)
-            original_password = password
-            print(f"The encoded password is {encoded_password}, and the original password is {original_password}.")
+            # AM : calls the decoder function with the value assigned to encoded_password
+            decoded_password = decoder(encoded_password)
+            print(f"The encoded password is {encoded_password}, and the original password is {decoded_password}.")
         elif option == 3:  # exiting program
             break
 
@@ -66,3 +73,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
