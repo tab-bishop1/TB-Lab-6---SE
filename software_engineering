@@ -26,7 +26,7 @@ def encoder(password):
     # in the new password, each digit should be shifted up by 3 numbers
 
 
-# Asha Miller : decodes the previously encoded password
+# AM : decodes the previously encoded password
 def decoder(encoded_pw):
     code = encoded_pw
     decoded_pw = []
